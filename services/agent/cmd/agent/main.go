@@ -19,7 +19,7 @@ func main() {
 	// Create scheduler with 5 worker goroutines
 	s := scheduler.New(5)
 
-	fmt.Println("🔍 Starting printer monitoring...")
+	fmt.Println("Starting printer monitoring...")
 	fmt.Println(strings.Repeat("=", 50))
 
 	for _, host := range printers {
@@ -27,7 +27,7 @@ func main() {
 		s.Submit(func() {
 			result, err := client.Poll(h)
 			if err != nil {
-				log.Printf("❌ Error polling %s: %v", h, err)
+				log.Printf("Error polling %s: %v", h, err)
 				return
 			}
 			fmt.Println(result.String())
@@ -35,5 +35,5 @@ func main() {
 	}
 
 	s.Wait()
-	fmt.Println("✅ Monitoring complete!")
+	fmt.Println("Monitoring complete!")
 }
